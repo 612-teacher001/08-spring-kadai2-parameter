@@ -5,9 +5,23 @@
 	<title>研修お問い合わせ</title>
 </head>
 <body>
-	<h1>お問い合わせありがとうございます</h1>
+	<h1 th:text="${genre} + 'ありがとうございます'"></h1>
 	<p>以下の内容で受け付けました</p>
 	<table border="1">
+		<tr>
+			<th>言語</th>
+			<td>
+				<span th:each="language : ${lang}" th:text="${language} + ','"></span>
+			</td>
+		</tr>
+		<tr>
+			<th>詳細内容</th>
+			<td th:text="${detail}"></td>
+		</tr>
+		<tr>
+			<th>実施予定日</th>
+			<td th:text="${dueDate}"></td>
+		</tr>
 		<tr>
 			<th>お名前</th>
 			<td th:text="${name}"></td>

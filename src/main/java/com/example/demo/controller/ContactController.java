@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ContactController {
 	@PostMapping("/contact")
-	public String contact(@RequestParam String name,
-						  @RequestParam String email,
+	public String contact(@RequestParam(defaultValue = "") Integer genre,  // 種別
+						  @RequestParam(defaultValue = "") String[] lang,  // 言語（必須）
+						  @RequestParam(defaultValue = "") String detail,  // 詳細内容
+						  @RequestParam(defaultValue = "") String dueDate, // 実施予定日
+						  @RequestParam(defaultValue = "") String name,    // お名前（必須）
+						  @RequestParam(defaultValue = "") String email,   // メールアドレス（必須）
 						  Model model) {
 		// 入力値チェック
 		List<String> errors = new ArrayList<String>();
@@ -36,7 +40,17 @@ public class ContactController {
 			return "contactForm";
 		}
 		
+		// 種別の文字列化
+		String genreString = "資料請求";
+		if (genre == 1) {
+			genreString = "見積もり依頼";
+		}
+		
 		// 遷移先画面への引き継ぎ
+		model.addAttribute("genre", genreString);
+		model.addAttribute("lang", lang);
+		model.addAttribute("detail", detail);
+		model.addAttribute("dueDate", dueDate);
 		model.addAttribute("name", name);
 		model.addAttribute("email", email);;
 		// 画面遷移
