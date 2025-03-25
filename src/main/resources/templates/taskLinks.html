@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>SP20課題リンク集</title>
+	<style>
+		body {
+			color: dimgray;
+			font-size: 14px;
+		}
+		ol {
+			counter-reset: step;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			line-height: 2.25;
+		}
+		ol li{
+			width: fit-content;
+		}
+		ol li::before {
+			counter-increment: step;
+			content: "Step" counter(step) "：";
+		}
+		ol li:hover {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>SP20課題リンク集</h1>
+	<main>
+		<ol>
+			<li><a href="http://localhost:8080/contact" target="_blank">お問い合わせ画面の作成</a></li>
+			<li><a href="http://localhost:8080/#" target="_blank">エラーメッセージの表示</a></li>
+			<li><a href="http://localhost:8080/#" target="_blank">エラーチェックの追加</a></li>
+			<li><a href="http://localhost:8080/#" target="_blank">新たな問合せ項目と問合せ受付完了ページの追加</a></li>
+			<li><a href="http://localhost:8080/#" target="_blank">エラーチェックの追加</a></li>
+			<li><a href="http://localhost:8080/#" target="_blank">問合せ結果画面に理療ページへのリンクの追加</a></li>
+			<li><a href="http://localhost:8080/#" target="_blank">研修資料情報ページの追加</a></li>
+		</ol>
+	</main>
+</body>
+</html>
