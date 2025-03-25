@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +16,26 @@ public class ContactController {
 						  @RequestParam String email,
 						  Model model) {
 		// 入力値チェック
+		List<String> errors = new ArrayList<String>();
+		// お名前のチェック
 		if (name == null || name.isEmpty()) {
-			model.addAttribute("error", "名前は必須です");
-			return "contactForm"; // ここで返却してしまえば、あとのコードを変更する必要がない
+			errors.add("名前は必須です");
+		} else if (name.length() > 20) {
+			errors.add("名前は20文字以内で入力してください");
 		}
+		// メールアドレスのチェック
+		if (email == null || email.isEmpty()) {
+			errors.add("メールアドレスは必須です");
+		}
+		
+		// エラーメッセージがある場合
+		if (errors.size() > 0) {
+			// エラーメッセージをスコープに登録
+			model.addAttribute("errors", errors);
+			// 自画面遷移
+			return "contactForm";
+		}
+		
 		// 遷移先画面への引き継ぎ
 		model.addAttribute("name", name);
 		model.addAttribute("email", email);;
