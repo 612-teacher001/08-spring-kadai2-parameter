@@ -12,6 +12,11 @@ public class ContactController {
 	public String contact(@RequestParam String name,
 						  @RequestParam String email,
 						  Model model) {
+		// 入力値チェック
+		if (name == null || name.isEmpty()) {
+			model.addAttribute("error", "名前は必須です");
+			return "contactForm"; // ここで返却してしまえば、あとのコードを変更する必要がない
+		}
 		// 遷移先画面への引き継ぎ
 		model.addAttribute("name", name);
 		model.addAttribute("email", email);;
