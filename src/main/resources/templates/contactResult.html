@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>研修お問い合わせ</title>
+</head>
+<body>
+	<h1>お問い合わせありがとうございます</h1>
+	<p>以下の内容で受け付けました</p>
+	<table border="1">
+		<tr>
+			<th>お名前</th>
+			<td th:text="${name}"></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td th:text="${email}"></td>
+		</tr>
+	</table>
+</body>
+</html>
