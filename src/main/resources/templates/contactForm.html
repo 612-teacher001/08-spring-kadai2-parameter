@@ -6,6 +6,9 @@
 </head>
 <body>
 	<h1>研修お問い合わせ</h1>
+	<ul th:if="${error}">
+		<li th:text="${error}"></li>
+	</ul>
 	<form action="/contact" method="post">
 		<table border="1">
 			<tr>
