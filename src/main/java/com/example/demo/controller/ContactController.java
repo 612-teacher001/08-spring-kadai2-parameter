@@ -7,11 +7,39 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ContactController {
+	
+	@GetMapping("/training/{language}")
+	public String training(@PathVariable String language,
+						   Model model) {
+		
+		// URLパスパラメータをもとに研修詳細を取得
+		String description = "";
+		switch (language) {
+		case "Java":
+			description = "大規模開発でオールラウンドに活躍できるエンジニアを育成します";
+			break;
+		case "PHP":
+			description = "Webアプリケーションに特化して活躍できるエンジニアを育成します";
+			break;
+		case "Python":
+			description = "AI開発やデータ分析の領域で活躍できるエンジニアを育成します";
+			break;
+		default:
+			description = "...";
+			break;
+		}
+		// 遷移先画面に引き継ぐデータをスコープに登録
+		model.addAttribute("description", description);
+		// 画面遷移
+		return "training";
+	}
+	
 	@PostMapping("/contact")
 	public String contact(@RequestParam(defaultValue = "") Integer genre,  // 種別
 						  @RequestParam(defaultValue = "") String[] lang,  // 言語（必須）
